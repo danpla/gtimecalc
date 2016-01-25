@@ -1,0 +1,206 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: gTimeCalc\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2016-01-25 18:32+0200\n"
+"PO-Revision-Date: 2016-01-17 16:11+0300\n"
+"Last-Translator: \n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: ru\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n"
+"%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
+"X-Generator: Poedit 1.5.4\n"
+
+#: gtimecalc/gtimecalc.py:47
+msgid "_File"
+msgstr "_Файл"
+
+#: gtimecalc/gtimecalc.py:52
+msgid "Quit"
+msgstr "Выйти"
+
+#: gtimecalc/gtimecalc.py:61
+msgid "_Help"
+msgstr "_Справка"
+
+#: gtimecalc/gtimecalc.py:66
+msgid "About"
+msgstr "О программе"
+
+#: gtimecalc/gtimecalc.py:156 gtimecalc.desktop.in.h:1
+msgid "Time calculator"
+msgstr "Калькулятор времени"
+
+#: gtimecalc/common.py:23 gtimecalc/notebook/export.py:31
+#: gtimecalc/notebook/export.py:164
+msgid "_Cancel"
+msgstr "О_тменить"
+
+#: gtimecalc/calculator/calculator.py:37
+msgid "Swap"
+msgstr "Поменять местами"
+
+#: gtimecalc/calculator/time_control.py:129
+msgid "Hours"
+msgstr "Часы"
+
+#: gtimecalc/calculator/time_control.py:136
+msgid "Minutes"
+msgstr "Минуты"
+
+#: gtimecalc/calculator/time_control.py:142
+msgid "Seconds"
+msgstr "Секунды"
+
+#: gtimecalc/calculator/time_control.py:149
+msgid "Milliseconds"
+msgstr "Миллисекунды"
+
+#: gtimecalc/calculator/time_control.py:172
+msgid "Copy"
+msgstr "Копировать"
+
+#: gtimecalc/calculator/time_control.py:184
+msgid "Paste"
+msgstr "Вставить"
+
+#: gtimecalc/calculator/time_control.py:196
+msgid "Reset"
+msgstr "Сбросить"
+
+#: gtimecalc/notebook/equation_list.py:41
+msgid "Time 1"
+msgstr "Время 1"
+
+#: gtimecalc/notebook/equation_list.py:58
+msgid "Time 2"
+msgstr "Время 2"
+
+#: gtimecalc/notebook/equation_list.py:73
+msgid "Result"
+msgstr "Результат"
+
+#: gtimecalc/notebook/export.py:24
+msgid "Export equations"
+msgstr "Экспортировать уравнения"
+
+#: gtimecalc/notebook/export.py:32
+msgid "_Export"
+msgstr "_Экспортировать"
+
+#: gtimecalc/notebook/export.py:73
+msgid "Format:"
+msgstr "Формат:"
+
+#: gtimecalc/notebook/export.py:78
+msgid "{} — time 1"
+msgstr "{} — время 1"
+
+#: gtimecalc/notebook/export.py:79
+msgid "{} — time 2"
+msgstr "{} — время 2"
+
+#: gtimecalc/notebook/export.py:80
+msgid "{} — operation"
+msgstr "{} — операция"
+
+#: gtimecalc/notebook/export.py:81
+msgid "{} — result"
+msgstr "{} — результат"
+
+#: gtimecalc/notebook/export.py:82
+msgid "{} — new line"
+msgstr "{} — перевод строки"
+
+#: gtimecalc/notebook/export.py:83
+msgid "{} — tabulation"
+msgstr "{} — табуляция"
+
+#: gtimecalc/notebook/export.py:96
+msgid "Only selected equations"
+msgstr "Только выбранные уравнения"
+
+#: gtimecalc/notebook/export.py:115
+msgid "Line endings:"
+msgstr "Окончания строк:"
+
+#: gtimecalc/notebook/export.py:132
+msgid "Preview:"
+msgstr "Предварительный просмотр:"
+
+#: gtimecalc/notebook/export.py:157
+msgid "Save file"
+msgstr "Сохранить файл"
+
+#: gtimecalc/notebook/export.py:165
+msgid "_Save"
+msgstr "Со_хранить"
+
+#: gtimecalc/notebook/export.py:192
+msgid "_OK"
+msgstr "_ОК"
+
+#: gtimecalc/notebook/notebook.py:62
+msgid "Add"
+msgstr "Дабавить"
+
+#: gtimecalc/notebook/notebook.py:64
+msgid "Add current equation"
+msgstr "Добавить текущее уравнение"
+
+#: gtimecalc/notebook/notebook.py:70
+msgid "Remove"
+msgstr "Удалить"
+
+#: gtimecalc/notebook/notebook.py:72
+msgid "Remove selected equations"
+msgstr "Удалить выбранные уравнения"
+
+#: gtimecalc/notebook/notebook.py:80
+msgid "Clear"
+msgstr "Очистить"
+
+#: gtimecalc/notebook/notebook.py:82
+msgid "Clear the list"
+msgstr "Очистить список"
+
+#: gtimecalc/notebook/notebook.py:92
+msgid "Export…"
+msgstr "Экспортировать…"
+
+#. icon_name will be set later
+#: gtimecalc/notebook/notebook.py:94
+msgid "Export equations…"
+msgstr "Экспортировать уравнения…"
+
+#: gtimecalc/notebook/notebook.py:128
+#, python-brace-format
+msgid "Remove {num} selected equation?"
+msgid_plural "Remove {num} selected equations?"
+msgstr[0] "Удалить {num} уравнение?"
+msgstr[1] "Удалить {num} уравнения?"
+msgstr[2] "Удалить {num} уравнений?"
+
+#: gtimecalc/notebook/notebook.py:132
+msgid "_Remove"
+msgstr "_Удалить"
+
+#: gtimecalc/notebook/notebook.py:139
+msgid "Clear the list?"
+msgstr "Очистить список?"
+
+#: gtimecalc/notebook/notebook.py:140
+msgid "All equations will be removed."
+msgstr "Все уравнения будут удалены."
+
+#: gtimecalc/notebook/notebook.py:141
+msgid "_Clear"
+msgstr "_Очистить"

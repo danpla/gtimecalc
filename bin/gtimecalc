@@ -1,0 +1,40 @@
+#!/usr/bin/env python3
+
+import os
+import sys
+import gettext
+
+import gi
+gi.require_version('Gtk', '3.0')
+gi.require_version('GLib', '2.0')
+from gi.repository import Gtk, GLib
+
+
+PREFIX = os.path.join(os.sep, 'usr', 'share')
+
+# Support running uninstalled
+path = os.path.abspath(os.path.join(os.path.dirname(__file__), '..'))
+if os.path.isdir(os.path.join(path, 'gtimecalc')):
+    sys.path.insert(1, path)
+    Gtk.IconTheme.get_default().prepend_search_path(
+        os.path.join(path, 'data', 'icons'))
+else:
+    sys.path.insert(1, PREFIX)
+
+
+from gtimecalc import app_info
+
+gettext.bindtextdomain(app_info.NAME, os.path.join(PREFIX, 'locale'))
+gettext.textdomain(app_info.NAME)
+
+
+from gtimecalc.gtimecalc import TimeCalc
+
+calc = TimeCalc()
+
+if os.name != 'nt':
+    import signal
+    GLib.unix_signal_add(GLib.PRIORITY_HIGH, signal.SIGTERM, calc.quit)
+    GLib.unix_signal_add(GLib.PRIORITY_HIGH, signal.SIGINT, calc.quit)
+
+sys.exit(calc.run(sys.argv))

@@ -1,0 +1,10 @@
+[Desktop Entry]
+Type=Application
+Name=gTimeCalc
+Exec=gtimecalc
+Icon=gtimecalc
+Categories=Utility;
+Terminal=false
+Comment=Time calculator
+Comment[ru]=Калькулятор времени
+Comment[uk]=Калькулятор часу
