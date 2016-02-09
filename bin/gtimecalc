@@ -12,14 +12,15 @@ from gi.repository import Gtk, GLib
 
 PREFIX = os.path.join(os.sep, 'usr', 'share')
 
-# Support running uninstalled
-path = os.path.abspath(os.path.join(os.path.dirname(__file__), '..'))
-if os.path.isdir(os.path.join(path, 'gtimecalc')):
-    sys.path.insert(1, path)
-    Gtk.IconTheme.get_default().prepend_search_path(
-        os.path.join(path, 'data', 'icons'))
-else:
-    sys.path.insert(1, PREFIX)
+if not hasattr(sys, 'frozen'):
+    # Support running uninstalled
+    path = os.path.abspath(os.path.join(os.path.dirname(__file__), '..'))
+    if os.path.isdir(os.path.join(path, 'gtimecalc')):
+        sys.path.insert(1, path)
+        Gtk.IconTheme.get_default().prepend_search_path(
+            os.path.join(path, 'data', 'icons'))
+    else:
+        sys.path.insert(1, PREFIX)
 
 
 from gtimecalc import app_info

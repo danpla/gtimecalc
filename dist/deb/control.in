@@ -1,0 +1,11 @@
+Package: gtimecalc
+Version: @VERSION@-1
+Architecture: all
+Maintainer: Daniel Plachotich <daniel.plachotich@yandex.ru>
+Installed-Size: @SIZE@
+Depends: python3, python3-gi
+Section: utils
+Priority: optional
+Homepage: @URL@
+Description: Time calculator
+ gTimeCalc is an interactive calculator for time in hh:mm:ss.ms format.
