@@ -49,7 +49,7 @@ of the calculator itself).
 But the most useful feature of the list is ability to export equations
 to a text file in a user-defined format. For example, you can parse an
 exported file using a scripting language and launch a program
-(like FFmpeg or Mencode) with appropriate arguments for batch processing.
+(like FFmpeg or Mencoder) with appropriate arguments for batch processing.
 Or you can export a [CSV][] to open in a spreadsheet.
 
 
