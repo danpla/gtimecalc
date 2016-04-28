@@ -29,8 +29,6 @@ class Notebook(Gtk.Grid):
             )
         self._calc = calc
 
-        self._create_toolbar()
-
         self._eq_store = EquationStore()
         self._eq_list = EquationList(self._eq_store)
         self._eq_list.connect('row-activated', self._on_row_activated)
@@ -47,6 +45,8 @@ class Notebook(Gtk.Grid):
         scrolled.add(self._eq_list)
         self.add(scrolled)
 
+        self._create_toolbar()
+
         icon_theme = Gtk.IconTheme.get_default()
         icon_theme.connect('changed', self._on_icon_theme_changed)
         icon_theme.emit('changed')
@@ -56,6 +56,7 @@ class Notebook(Gtk.Grid):
             icon_size=Gtk.IconSize.SMALL_TOOLBAR,
             hexpand=True
             )
+        toolbar.get_style_context().add_class('bottom-toolbar')
         self.add(toolbar)
 
         btn_add = Gtk.ToolButton(
