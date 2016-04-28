@@ -24,6 +24,7 @@ class TimeUnitSpin(Gtk.SpinButton):
         self.set_increments(1, 5)
 
         self._padding = padding if padding > 0 else len(str(max_value))
+        self.set_width_chars(self._padding)
 
         self._higher = None
         self._lower = None
