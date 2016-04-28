@@ -40,7 +40,6 @@ class Notebook(Gtk.Grid):
         scrolled = Gtk.ScrolledWindow(
             shadow_type=Gtk.ShadowType.IN,
             expand=True,
-            height_request=120
             )
         scrolled.add(self._eq_list)
         self.add(scrolled)
