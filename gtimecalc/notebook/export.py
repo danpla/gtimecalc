@@ -70,7 +70,7 @@ class ExportDialog(Gtk.Dialog):
             )
         area.add(grid)
 
-        grid.add(Gtk.Label(_('Format:')))
+        grid.add(Gtk.Label(label=_('Format:')))
 
         self._format_entry = Gtk.Entry(
             hexpand=True,
@@ -112,7 +112,7 @@ class ExportDialog(Gtk.Dialog):
             )
         area.add(grid)
 
-        grid.add(Gtk.Label(_('Line endings:')))
+        grid.add(Gtk.Label(label=_('Line endings:')))
 
         self._le_combo = Gtk.ComboBoxText(hexpand=True)
         self._le_combo.append_text('Unix (LF)')
@@ -129,7 +129,10 @@ class ExportDialog(Gtk.Dialog):
         # Preview
 
         area.add(
-            Gtk.Label(_('Preview:'), xalign=0.0))
+            Gtk.Label(
+                label=_('Preview:'),
+                xalign=0.0
+            ))
 
         preview = Gtk.TextView(
             buffer=self._textbuf,

@@ -131,19 +131,19 @@ class TimeControl(Gtk.Grid):
         self._hours.set_hexpand(True)
         self.add(self._hours)
 
-        self.add(Gtk.Label('\N{RATIO}'))
+        self.add(Gtk.Label(label='\N{RATIO}'))
 
         self._minutes = TimeUnitSpin(_('Minutes'), self._MAX_MINUTES)
         self._minutes.connect('value-changed', self._on_value_changed)
         self.add(self._minutes)
 
-        self.add(Gtk.Label('\N{RATIO}'))
+        self.add(Gtk.Label(label='\N{RATIO}'))
 
         self._seconds = TimeUnitSpin(_('Seconds'), self._MAX_SECONDS)
         self._seconds.connect('value-changed', self._on_value_changed)
         self.add(self._seconds)
 
-        self.add(Gtk.Label('.'))
+        self.add(Gtk.Label(label='.'))
 
         self._milliseconds = TimeUnitSpin(
             _('Milliseconds'), self._MAX_MILLISECONDS)
