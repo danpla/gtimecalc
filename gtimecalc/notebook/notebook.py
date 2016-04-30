@@ -4,7 +4,7 @@ import json
 from collections import OrderedDict
 import os
 
-from gi.repository import Gtk
+from gi.repository import Gtk, Gdk
 
 from ..config import CONFIG_DIR
 from ..common import confirmation
@@ -31,6 +31,7 @@ class Notebook(Gtk.Grid):
 
         self._eq_store = EquationStore()
         self._eq_list = EquationList(self._eq_store)
+        self._eq_list.connect('button-press-event', self._on_button_press)
         self._eq_list.connect('row-activated', self._on_row_activated)
 
         selection = self._eq_list.get_selection()
@@ -109,7 +110,7 @@ class Notebook(Gtk.Grid):
         self._btn_clear.set_sensitive(has_eqs)
         self._btn_export.set_sensitive(has_eqs)
 
-    def _on_add(self, button):
+    def _on_add(self, widget):
         self._eq_store.append((
             self._calc.time1,
             self._calc.time2,
@@ -118,7 +119,7 @@ class Notebook(Gtk.Grid):
 
         self._update_button_state()
 
-    def _on_remove(self, button):
+    def _on_remove(self, widget):
         selection = self._eq_list.get_selection()
         tree_paths = selection.get_selected_rows()[1]
         num = len(tree_paths)
@@ -133,7 +134,7 @@ class Notebook(Gtk.Grid):
             self._eq_store.remove_equations(tree_paths)
             self._update_button_state()
 
-    def _on_clear(self, button):
+    def _on_clear(self, widget):
         if not confirmation(
                 self.get_toplevel(),
                 _('Clear the list?'),
@@ -143,11 +144,77 @@ class Notebook(Gtk.Grid):
         self._eq_store.clear()
         self._update_button_state()
 
-    def _on_export(self, button):
+    def _on_export(self, widget):
         export_dlg = ExportDialog(
             self.get_toplevel(), self._eq_list.get_selection())
         export_dlg.run()
         export_dlg.destroy()
+
+    def _on_button_press(self, eq_list, event):
+        if event.type != Gdk.EventType.BUTTON_PRESS:
+            return Gdk.EVENT_PROPAGATE
+
+        self._eq_list.grab_focus()
+
+        selection = self._eq_list.get_selection()
+        click_info = self._eq_list.get_path_at_pos(int(event.x), int(event.y))
+        if click_info is None:
+            selection.unselect_all()
+        elif event.button == Gdk.BUTTON_SECONDARY:
+            tree_path, column, cell_x, cell_y = click_info
+            if not selection.path_is_selected(tree_path):
+                self._eq_list.set_cursor(tree_path, column, False)
+
+        if event.button != Gdk.BUTTON_SECONDARY:
+            return Gdk.EVENT_PROPAGATE
+
+        menu = Gtk.Menu(attach_widget=self._eq_list)
+
+        mi_add = Gtk.MenuItem(
+            label=_('_Add'),
+            use_underline=True,
+            tooltip_text=_('Add current equation'),
+            )
+        mi_add.connect('activate', self._on_add)
+        menu.append(mi_add)
+
+        mi_remove = Gtk.MenuItem(
+            label=_('_Remove'),
+            use_underline=True,
+            tooltip_text=_('Remove selected equations'),
+            )
+        mi_remove.connect('activate', self._on_remove)
+        menu.append(mi_remove)
+
+        mi_clear = Gtk.MenuItem(
+            label=_('_Clear'),
+            use_underline=True,
+            tooltip_text=_('Clear the list'),
+            )
+        mi_clear.connect('activate', self._on_clear)
+        menu.append(mi_clear)
+
+        menu.append(Gtk.SeparatorMenuItem())
+
+        mi_export = Gtk.MenuItem(
+            label=_('_Export…'),
+            use_underline=True,
+            tooltip_text=_('Export equations…'),
+            )
+        mi_export.connect('activate', self._on_export)
+        menu.append(mi_export)
+
+        num_selected = selection.count_selected_rows()
+        if num_selected == 0:
+            mi_remove.set_sensitive(False)
+        if len(self._eq_store) == 0:
+            mi_clear.set_sensitive(False)
+            mi_export.set_sensitive(False)
+
+        menu.show_all()
+        menu.popup(None, None, None, None, event.button, event.time)
+
+        return Gdk.EVENT_STOP
 
     def _on_row_activated(self, eq_list, path, column):
         row = eq_list.get_model()[path]
