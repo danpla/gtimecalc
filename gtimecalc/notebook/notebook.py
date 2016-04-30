@@ -31,6 +31,8 @@ class Notebook(Gtk.Grid):
 
         self._eq_store = EquationStore()
         self._eq_list = EquationList(self._eq_store)
+        self._eq_list.set_has_tooltip(True)
+        self._eq_list.connect('query-tooltip', self._on_query_tooltip)
         self._eq_list.connect('button-press-event', self._on_button_press)
         self._eq_list.connect('row-activated', self._on_row_activated)
 
@@ -149,6 +151,26 @@ class Notebook(Gtk.Grid):
             self.get_toplevel(), self._eq_list.get_selection())
         export_dlg.run()
         export_dlg.destroy()
+
+    def _on_query_tooltip(self, eq_list, x, y, keyboard_tip, tooltip):
+        points_to_row, *context = eq_list.get_tooltip_context(
+            x, y, keyboard_tip)
+        if not points_to_row:
+            return False
+
+        eq_store, tree_path, tree_iter = context[2:]
+        row = eq_store[tree_iter]
+
+        text = '{} {} {} = {}'.format(
+            ms_to_str(row[EquationStore.COL_TIME1], True),
+            ('+', '\N{MINUS SIGN}')[row[EquationStore.COL_OPERATION]],
+            ms_to_str(row[EquationStore.COL_TIME2], True),
+            ms_to_str(row[EquationStore.COL_RESULT], True)
+            )
+
+        tooltip.set_text(text)
+        eq_list.set_tooltip_row(tooltip, tree_path)
+        return True
 
     def _on_button_press(self, eq_list, event):
         if event.type != Gdk.EventType.BUTTON_PRESS:
