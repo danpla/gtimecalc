@@ -54,6 +54,8 @@ class ExportDialog(Gtk.Dialog):
             settings['export'] = self._settings
 
         self._textbuf = Gtk.TextBuffer()
+        self._textbuf.create_tag('monospace', family='monospace')
+
         self._create_ui()
         self._format_text()
 
@@ -138,15 +140,6 @@ class ExportDialog(Gtk.Dialog):
             buffer=self._textbuf,
             editable=False
             )
-        css_provider = Gtk.CssProvider()
-        css_provider.load_from_data(
-            'GtkTextView {'
-            '   font: monospace;'
-            '}'.encode()
-            )
-        preview.get_style_context().add_provider(
-            css_provider, Gtk.STYLE_PROVIDER_PRIORITY_APPLICATION)
-
         scrolled = Gtk.ScrolledWindow(
             shadow_type=Gtk.ShadowType.IN,
             expand=True
@@ -226,4 +219,9 @@ class ExportDialog(Gtk.Dialog):
                 line = line.replace(*rpair)
             lines.append(line)
 
-        self._textbuf.set_text('\n'.join(lines))
+        self._textbuf.delete(*self._textbuf.get_bounds())
+        self._textbuf.insert_with_tags_by_name(
+            self._textbuf.get_start_iter(),
+            '\n'.join(lines),
+            'monospace'
+            )
