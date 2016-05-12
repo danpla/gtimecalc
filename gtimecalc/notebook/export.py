@@ -74,14 +74,14 @@ class ExportDialog(Gtk.Dialog):
 
         self._format_entry = Gtk.Entry(
             hexpand=True,
-            tooltip_text='\n'.join((
+            tooltip_markup='\n'.join((
                 _('{} — time 1'),
                 _('{} — time 2'),
                 _('{} — operation'),
                 _('{} — result'),
                 _('{} — new line'),
                 _('{} — tabulation'),
-                )).format(*self._FORMAT_SPECIFIERS)
+                )).format(*map('<tt>{}</tt>'.format, self._FORMAT_SPECIFIERS))
             )
         format_string = self._settings.get('format')
         if not isinstance(format_string, str):
