@@ -122,7 +122,6 @@ class MainWindow(Gtk.ApplicationWindow):
 
         notebook_visible_state = self.get_action_state('notebook-visible')
         state['show_equations'] = notebook_visible_state.get_boolean()
-        notebook_visible_state.unref()
 
         state['x'], state['y'] = self.get_position()
         state['width'], state['height'] = self.get_size()
