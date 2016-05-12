@@ -138,6 +138,15 @@ class ExportDialog(Gtk.Dialog):
             buffer=self._textbuf,
             editable=False
             )
+        css_provider = Gtk.CssProvider()
+        css_provider.load_from_data(
+            'GtkTextView {'
+            '   font: monospace;'
+            '}'.encode()
+            )
+        preview.get_style_context().add_provider(
+            css_provider, Gtk.STYLE_PROVIDER_PRIORITY_APPLICATION)
+
         scrolled = Gtk.ScrolledWindow(
             shadow_type=Gtk.ShadowType.IN,
             expand=True
