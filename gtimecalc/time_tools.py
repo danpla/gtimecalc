@@ -67,5 +67,5 @@ def str_to_ms(time_str):
             (SECOND_MS, MINUTE_MS, HOUR_MS),
             (float, int, int)):
         if val:
-            result += int(val_t(val) * ms)
+            result += round(val_t(val) * ms)
     return result
