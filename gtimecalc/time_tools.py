@@ -63,7 +63,7 @@ def str_to_ms(time_str):
 
     result = 0
     for val, ms, val_t in zip(
-            reversed(re.split(' *[:\N{RATIO}, ] *', time_str)),
+            reversed(re.split('[ \t]*[:\N{RATIO}, \t][ \t]*', time_str)),
             (SECOND_MS, MINUTE_MS, HOUR_MS),
             (float, int, int)):
         if val:
