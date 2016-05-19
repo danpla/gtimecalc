@@ -10,9 +10,9 @@ gTimeCalc is an interactive calculator for time in `hh:mm:ss.ms` format.
 
 You can copy a time string from an any source and paste it to both of time
 entries. The units of time can be separated by a colon,
-Unicode "RATIO" (U+2236), a comma or spaces. The last component (seconds)
-is treated as a real number, others — as integers, which means that fractional
-part (if any) will be truncated.
+a Unicode "RATIO" (U+2236), a comma or any number of spaces and tabs.
+The last component (seconds) is treated as a real number, others — as integers,
+which means that fractional part (if any) will be truncated.
 
 Time units in a string are parsed from right to left, so some of them, as well
 as separators between, can be omitted. In this case, they will be treated
