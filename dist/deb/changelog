@@ -1,3 +1,9 @@
+gtimecalc (1.0.1) stable; urgency=low
+
+  * New upstream release
+
+ -- Daniel Plachotich <daniel.plachotich@yandex.ru>  Sun, 24 Jul 2016 12:34:44 +0300
+
 gtimecalc (1.0.0) stable; urgency=low
 
   * Upstream release

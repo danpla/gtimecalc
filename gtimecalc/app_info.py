@@ -19,7 +19,7 @@ freely, subject to the following restrictions:
 '''
 
 TITLE = 'gTimeCalc'
-VERSION = '1.0.0'
+VERSION = '1.0.1'
 
 NAME = TITLE.lower()
 ICON = NAME
