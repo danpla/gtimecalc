@@ -49,10 +49,6 @@ class Notebook(Gtk.Grid):
 
         self._create_toolbar()
 
-        icon_theme = Gtk.IconTheme.get_default()
-        icon_theme.connect('changed', self._on_icon_theme_changed)
-        icon_theme.emit('changed')
-
     def _create_toolbar(self):
         toolbar = Gtk.Toolbar(
             icon_size=Gtk.IconSize.SMALL_TOOLBAR,
@@ -91,26 +87,20 @@ class Notebook(Gtk.Grid):
 
         toolbar.add(Gtk.SeparatorToolItem.new())
 
-        btn_export = Gtk.ToolButton(
-            label=_('Export…'),
-            # icon_name will be set later
-            tooltip_text=_('Export equations…'),
+        btn_save_as = Gtk.ToolButton(
+            label=_('Save as…'),
+            icon_name='document-save-as',
+            tooltip_text=_('Save equations as…'),
             sensitive=False
             )
-        btn_export.connect('clicked', self._on_export)
-        self._btn_export = btn_export
-        toolbar.add(btn_export)
-
-    def _on_icon_theme_changed(self, theme):
-        icon_name = 'document-export'
-        if not theme.has_icon(icon_name):
-            icon_name = 'gtimecalc-export'
-        self._btn_export.set_icon_name(icon_name)
+        btn_save_as.connect('clicked', self._on_save_as)
+        self._btn_save_as = btn_save_as
+        toolbar.add(btn_save_as)
 
     def _update_button_state(self):
         has_eqs = len(self._eq_store) > 0
         self._btn_clear.set_sensitive(has_eqs)
-        self._btn_export.set_sensitive(has_eqs)
+        self._btn_save_as.set_sensitive(has_eqs)
 
     def _on_add(self, widget):
         self._eq_store.append((
@@ -146,7 +136,7 @@ class Notebook(Gtk.Grid):
         self._eq_store.clear()
         self._update_button_state()
 
-    def _on_export(self, widget):
+    def _on_save_as(self, widget):
         export_dlg = ExportDialog(
             self.get_toplevel(), self._eq_list.get_selection())
         export_dlg.run()
@@ -218,20 +208,20 @@ class Notebook(Gtk.Grid):
 
         menu.append(Gtk.SeparatorMenuItem())
 
-        mi_export = Gtk.MenuItem(
-            label=_('_Export…'),
+        mi_save_as = Gtk.MenuItem(
+            label=_('_Save as…'),
             use_underline=True,
-            tooltip_text=_('Export equations…'),
+            tooltip_text=_('Save equations as…'),
             )
-        mi_export.connect('activate', self._on_export)
-        menu.append(mi_export)
+        mi_save_as.connect('activate', self._on_save_as)
+        menu.append(mi_save_as)
 
         num_selected = selection.count_selected_rows()
         if num_selected == 0:
             mi_remove.set_sensitive(False)
         if len(self._eq_store) == 0:
             mi_clear.set_sensitive(False)
-            mi_export.set_sensitive(False)
+            mi_save_as.set_sensitive(False)
 
         menu.show_all()
         menu.popup(None, None, None, None, event.button, event.time)

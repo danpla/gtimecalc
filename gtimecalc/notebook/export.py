@@ -21,7 +21,7 @@ class ExportDialog(Gtk.Dialog):
 
     def __init__(self, parent, selection):
         super().__init__(
-            title=_('Export equations'),
+            title=_('Save equations'),
             transient_for=parent,
             destroy_with_parent=True,
             default_width=400,
@@ -29,7 +29,7 @@ class ExportDialog(Gtk.Dialog):
             )
         self.add_buttons(
             _('_Cancel'), Gtk.ResponseType.CANCEL,
-            _('_Export'), Gtk.ResponseType.OK,
+            _('_Save'), Gtk.ResponseType.OK,
             )
 
         self._all_eqs = []
