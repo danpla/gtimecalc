@@ -1,5 +1,6 @@
 gtimecalc/gtimecalc.py
 gtimecalc/common.py
+gtimecalc/main_window.py
 gtimecalc/calculator/calculator.py
 gtimecalc/calculator/time_control.py
 gtimecalc/notebook/equation_list.py

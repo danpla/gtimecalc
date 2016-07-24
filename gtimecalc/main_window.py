@@ -76,7 +76,7 @@ class MainWindow(Gtk.ApplicationWindow):
         menubar.append(mi_view)
 
         mi_show_equations = Gtk.CheckMenuItem(
-            label=_('Show Equations'),
+            label=_('Equations'),
             action_name='win.notebook-visible')
         view_menu.append(mi_show_equations)
 
