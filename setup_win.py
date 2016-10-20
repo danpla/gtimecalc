@@ -75,8 +75,8 @@ setup(
     name='gTimeCalc',
     description='Time calculator',
     version=app_info.VERSION,
-    author='Daniel Plachotich',
-    author_email='daniel.plachotich@yandex.ru',
+    author='Daniel Plakhotich',
+    author_email='daniel.plakhotich@gmail.com',
     url=app_info.WEBSITE,
     options=dict(
         build_exe=dict(
