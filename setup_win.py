@@ -4,6 +4,7 @@ from glob import glob
 import shutil
 import subprocess
 
+import cx_Freeze
 from cx_Freeze import setup, Executable
 
 from gtimecalc import app_info
@@ -112,6 +113,22 @@ else:
     print('msgfmt is not found; translations will not be included')
 
 
+build_exe_options = dict(
+    # Remove weighty unused modules, which will make the installer
+    # almost 2 Mb smaller.
+    excludes=['decimal', 'hashlib', 'lzma', 'pyexpat' 'ssl'],
+    includes=['gi'],
+    packages=['gi'],
+    include_files=include_files
+    )
+
+if int(cx_Freeze.version.split('.', 1)[0]) > 4:
+    build_exe_options.update(
+        zip_exclude_packages=[],
+        zip_include_packages=['*']
+        )
+
+
 setup(
     name='gTimeCalc',
     description='Time calculator',
@@ -120,14 +137,7 @@ setup(
     author_email='daniel.plakhotich@gmail.com',
     url=app_info.WEBSITE,
     options=dict(
-        build_exe=dict(
-            # Remove weighty unused modules, which will make the installer
-            # almost 2 Mb smaller.
-            excludes=['decimal', 'hashlib', 'lzma', 'pyexpat' 'ssl'],
-            includes=['gi'],
-            packages=['gi'],
-            include_files=include_files
-            ),
+        build_exe=build_exe_options,
         bdist_msi=dict(
             upgrade_code='{1ab63180-c6bb-11e5-b5d4-0002a5d5c51b}',
             )
