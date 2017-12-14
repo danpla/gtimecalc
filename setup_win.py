@@ -121,6 +121,9 @@ setup(
     url=app_info.WEBSITE,
     options=dict(
         build_exe=dict(
+            # Remove weighty unused modules, which will make the installer
+            # almost 2 Mb smaller.
+            excludes=['decimal', 'hashlib', 'lzma', 'pyexpat' 'ssl'],
             includes=['gi'],
             packages=['gi'],
             include_files=include_files
