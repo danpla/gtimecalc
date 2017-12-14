@@ -1,6 +1,8 @@
 import os
 import site
 from glob import glob
+import shutil
+import subprocess
 
 from cx_Freeze import setup, Executable
 
@@ -43,7 +45,7 @@ inc_data = [
     ('share', 'icons', 'Adwaita'),
     ('share', 'icons', 'hicolor'),
     # ('share', 'fonts'),
-    # ('share', 'locale'),
+    # ('share', 'locale'),  # .mo files are added manually (see below)
     ]
 
 
@@ -69,6 +71,45 @@ include_files.append((
     os.path.join('data', 'icons', 'hicolor', 'scalable'),
     os.path.join('share', 'icons', 'hicolor', 'scalable')
     ))
+
+
+def build_mo(msgfmt_path, tmp_dir):
+    po_dir = 'po'
+    for lang in open(os.path.join(po_dir, 'LINGUAS'), 'r', encoding='utf-8'):
+        lang = lang.strip()
+        if not lang or lang.startswith('#'):
+            continue
+
+        mo_dir = os.path.join(tmp_dir, lang, 'LC_MESSAGES')
+        os.makedirs(mo_dir, exist_ok=True)
+
+        cmd = (
+            msgfmt_path,
+            os.path.join(po_dir, lang + '.po'),
+            '-o',
+            os.path.join(mo_dir, app_info.NAME + '.mo')
+        )
+        subprocess.call(cmd)
+
+        # Copy .mo for Glib/Gtk
+        for mo_name in ('glib20', 'gtk30'):
+            mo_path = os.path.join(
+                include_path, 'share', 'locale', lang, 'LC_MESSAGES',
+                mo_name + '.mo')
+
+            try:
+                shutil.copy(mo_path, mo_dir)
+            except FileNotFoundError:
+                pass
+
+
+msgfmt_path = shutil.which('msgfmt')
+if msgfmt_path is not None:
+    locale_build_dir = os.path.join('build', 'locale')
+    build_mo(msgfmt_path, locale_build_dir)
+    include_files.append((locale_build_dir, os.path.join('share', 'locale')))
+else:
+    print('msgfmt is not found; translations will not be included')
 
 
 setup(

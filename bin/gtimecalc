@@ -3,6 +3,7 @@
 import os
 import sys
 import gettext
+import locale
 
 import gi
 gi.require_version('Gtk', '3.0')
@@ -10,7 +11,15 @@ gi.require_version('GLib', '2.0')
 from gi.repository import Gtk, GLib
 
 
-PREFIX = os.path.join(os.sep, 'usr', 'share')
+if os.name != 'nt':
+    PREFIX = os.path.join(os.sep, 'usr', 'share')
+else:
+    if hasattr(sys, 'frozen'):
+        # On Windows, Gtk/Glib search for data in the executable's
+        # directory. We should do the same for Python's gettext.
+        PREFIX = os.path.join(os.path.dirname(sys.executable), 'share')
+    else:
+        PREFIX = ''
 
 if not hasattr(sys, 'frozen'):
     # Support running uninstalled
@@ -24,6 +33,20 @@ if not hasattr(sys, 'frozen'):
 
 
 from gtimecalc import app_info
+
+if os.name == 'nt':
+    # bindtextdomain() depends on environment variables usually not
+    # set on Windows, so we have to set LANG manually.
+    # First try to detect the UI language via Window's API, then fall
+    # back to getdefaultlocale().
+    # See https://stackoverflow.com/a/25691701.
+
+    import ctypes
+    lang_id = ctypes.windll.kernel32.GetUserDefaultUILanguage()
+    lang = locale.windows_locale.get(lang_id, locale.getdefaultlocale()[0])
+
+    if lang is not None:
+        os.environ.setdefault('LANG', lang)
 
 gettext.bindtextdomain(app_info.NAME, os.path.join(PREFIX, 'locale'))
 gettext.textdomain(app_info.NAME)
