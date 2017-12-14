@@ -80,7 +80,6 @@ setup(
     url=app_info.WEBSITE,
     options=dict(
         build_exe=dict(
-            compressed=False,
             includes=['gi'],
             packages=['gi'],
             include_files=include_files
