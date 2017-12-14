@@ -40,6 +40,7 @@ class MainWindow(Gtk.ApplicationWindow):
 
         grid.show_all()
 
+        self._notebook.hide()
         notebook_visible_action = Gio.SimpleAction.new_stateful(
             'notebook-visible',
             None,
