@@ -3,6 +3,7 @@ import site
 from glob import glob
 import shutil
 import subprocess
+import sys
 
 import cx_Freeze
 from cx_Freeze import setup, Executable
@@ -91,7 +92,7 @@ include_files.append((
     ))
 
 
-def build_mo(msgfmt_path, tmp_dir):
+def build_mo(msgfmt, tmp_dir):
     po_dir = 'po'
     for lang in open(os.path.join(po_dir, 'LINGUAS'), 'r', encoding='utf-8'):
         lang = lang.strip()
@@ -101,13 +102,9 @@ def build_mo(msgfmt_path, tmp_dir):
         mo_dir = os.path.join(tmp_dir, lang, 'LC_MESSAGES')
         os.makedirs(mo_dir, exist_ok=True)
 
-        cmd = (
-            msgfmt_path,
+        msgfmt(
             os.path.join(po_dir, lang + '.po'),
-            '-o',
-            os.path.join(mo_dir, app_info.NAME + '.mo')
-        )
-        subprocess.call(cmd)
+            os.path.join(mo_dir, app_info.NAME + '.mo'))
 
         # Copy .mo for Glib/Gtk
         for mo_name in ('glib20', 'gtk30'):
@@ -121,10 +118,25 @@ def build_mo(msgfmt_path, tmp_dir):
                 pass
 
 
+msgfmt = None
 msgfmt_path = shutil.which('msgfmt')
-if msgfmt_path is not None:
+if msgfmt_path is None:
+    # Fall back to the script shipped with Python
+    msgfmt_path = os.path.join(sys.base_prefix, 'Tools', 'i18n', 'msgfmt.py')
+    if os.path.isfile(msgfmt_path):
+        def msgfmt(in_path, out_path):
+            subprocess.call(
+                'py -3 {} -o {} {}'.format(msgfmt_path, out_path, in_path),
+                shell=True)
+
+else:
+    def msgfmt(in_path, out_path):
+        subprocess.call((msgfmt_path, in_path, '-o', out_path))
+
+
+if msgfmt is not None:
     locale_build_dir = os.path.join('build', 'locale')
-    build_mo(msgfmt_path, locale_build_dir)
+    build_mo(msgfmt, locale_build_dir)
     include_files.append((locale_build_dir, os.path.join('share', 'locale')))
 else:
     print('msgfmt is not found; translations will not be included')
