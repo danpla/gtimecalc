@@ -120,7 +120,10 @@ def build_mo(msgfmt, tmp_dir):
 
 msgfmt = None
 msgfmt_path = shutil.which('msgfmt')
-if msgfmt_path is None:
+if msgfmt_path is not None:
+    def msgfmt(in_path, out_path):
+        subprocess.call((msgfmt_path, in_path, '-o', out_path))
+else:
     # Fall back to the script shipped with Python
     msgfmt_path = os.path.join(sys.base_prefix, 'Tools', 'i18n', 'msgfmt.py')
     if os.path.isfile(msgfmt_path):
@@ -128,10 +131,6 @@ if msgfmt_path is None:
             subprocess.call(
                 'py -3 {} -o {} {}'.format(msgfmt_path, out_path, in_path),
                 shell=True)
-
-else:
-    def msgfmt(in_path, out_path):
-        subprocess.call((msgfmt_path, in_path, '-o', out_path))
 
 
 if msgfmt is not None:
