@@ -131,9 +131,9 @@ else:
 
 
 build_exe_options = dict(
-    # Remove weighty unused modules, which will make the installer
-    # almost 2 Mb smaller.
-    excludes=['decimal', 'hashlib', 'lzma', 'pyexpat' 'ssl'],
+    # Remove unused modules, which will make the installer almost
+    # 2 Mb smaller.
+    excludes=['bz2', 'decimal', 'hashlib', 'lzma', 'pyexpat', 'ssl'],
     includes=['gi'],
     packages=['gi'],
     include_files=include_files
