@@ -5,6 +5,14 @@ import sys
 import gettext
 import locale
 
+
+if hasattr(sys, 'frozen') and os.name == 'nt':
+    # If the Python libs was not packed in a ZIP archive (cx_Freeze
+    # doesn't do this by default since version 5), we should extend
+    # the PATH manually so gi/_gi.pyd will see the DLLs.
+    os.environ['PATH'] += os.pathsep + os.path.dirname(sys.executable)
+
+
 import gi
 gi.require_version('Gtk', '3.0')
 gi.require_version('GLib', '2.0')
@@ -20,6 +28,7 @@ else:
         PREFIX = os.path.join(os.path.dirname(sys.executable), 'share')
     else:
         PREFIX = ''
+
 
 if not hasattr(sys, 'frozen'):
     # Support running uninstalled
