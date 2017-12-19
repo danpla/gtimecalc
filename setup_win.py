@@ -42,7 +42,7 @@ inc_data = (
     ('lib', 'gdk-pixbuf-2.0'),
     # ('lib', 'girepository-1.0'),  # See inc_typelibs
     ('share', 'fontconfig'),
-    ('share', 'glib-2.0'),
+    ('share', 'glib-2.0', 'schemas', 'gschemas.compiled'),
     ('share', 'icons', 'Adwaita'),
     ('share', 'icons', 'hicolor'),
     # ('share', 'fonts'),
