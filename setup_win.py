@@ -40,14 +40,28 @@ inc_data = [
     ('etc', 'gtk-3.0'),
     ('etc', 'pango'),
     ('lib', 'gdk-pixbuf-2.0'),
-    ('lib', 'girepository-1.0'),
+    # ('lib', 'girepository-1.0'),  # See inc_typelibs
     ('share', 'fontconfig'),
     ('share', 'glib-2.0'),
     ('share', 'icons', 'Adwaita'),
     ('share', 'icons', 'hicolor'),
     # ('share', 'fonts'),
-    # ('share', 'locale'),  # .mo files are added manually (see below)
+    # ('share', 'locale'),  # See build_mo()
     ]
+
+
+inc_typelibs = (
+    'Atk-1.0',
+    'cairo-1.0',
+    'Gdk-3.0',
+    'GdkPixbuf-2.0',
+    'Gio-2.0',
+    'GLib-2.0',
+    'GModule-2.0',
+    'GObject-2.0',
+    'Gtk-3.0',
+    'Pango-1.0',
+    )
 
 
 def iter_inc_files():
@@ -57,6 +71,9 @@ def iter_inc_files():
     for path_parts in inc_data:
         path = os.path.join(*path_parts)
         yield path
+
+    for typelib in inc_typelibs:
+        yield os.path.join('lib', 'girepository-1.0', typelib + '.typelib')
 
 
 include_files = []
