@@ -124,7 +124,7 @@ class ExportDialog(Gtk.Dialog):
             line_endings = self._LINE_ENDING_NAMES.index(
                 self._settings.get('line_endings'))
         except (TypeError, ValueError):
-            line_endings = 0
+            line_endings = 1 if os.name == 'nt' else 0
         self._le_combo.set_active(line_endings)
         grid.add(self._le_combo)
 
