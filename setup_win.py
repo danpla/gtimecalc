@@ -14,7 +14,7 @@ site_dir = site.getsitepackages()[1]
 include_path = os.path.join(site_dir, 'gnome')
 
 
-inc_bin = [
+inc_bin = (
     'gspawn-win32-helper.exe',
     'libatk-1.0-0.dll',
     'libcairo-gobject-2.dll',
@@ -32,10 +32,10 @@ inc_bin = [
     'librsvg-2-2.dll',
     'libtiff-5.dll',
     'libwebp-5.dll',
-    ]
+    )
 
 
-inc_data = [
+inc_data = (
     ('etc', 'fonts'),
     ('etc', 'gtk-3.0'),
     ('etc', 'pango'),
@@ -47,7 +47,7 @@ inc_data = [
     ('share', 'icons', 'hicolor'),
     # ('share', 'fonts'),
     # ('share', 'locale'),  # See build_mo()
-    ]
+    )
 
 
 inc_typelibs = (
