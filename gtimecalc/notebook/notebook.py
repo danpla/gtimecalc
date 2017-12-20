@@ -18,7 +18,7 @@ class Notebook(Gtk.Grid):
 
     _OPERATION_MAP = {
         '+': Operation.ADD,
-        '-': Operation.SUBSTRACT
+        '-': Operation.SUB
         }
 
     _FILE = os.path.join(CONFIG_DIR, 'notebook.json')

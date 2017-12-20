@@ -15,7 +15,7 @@ class Calculator(Gtk.Grid):
 
     _OPERATION_MAP = {
         '+': Operation.ADD,
-        '-': Operation.SUBSTRACT
+        '-': Operation.SUB
         }
 
     def __init__(self):

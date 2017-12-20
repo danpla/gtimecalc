@@ -4,7 +4,7 @@ from gi.repository import Gtk
 
 class Operation:
     ADD = 0
-    SUBSTRACT = 1
+    SUB = 1
 
 
 class OperationChooser(Gtk.ComboBox):
