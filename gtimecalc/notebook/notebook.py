@@ -103,11 +103,15 @@ class Notebook(Gtk.Grid):
         self._btn_save_as.set_sensitive(has_eqs)
 
     def _on_add(self, widget):
-        self._eq_store.append((
+        tree_iter = self._eq_store.append((
             self._calc.time1,
             self._calc.time2,
             self._calc.operation,
             self._calc.result))
+
+        tree_path = self._eq_store.get_path(tree_iter)
+        self._eq_list.scroll_to_cell(tree_path, None, False, 0.0, 0.0)
+        self._eq_list.set_cursor(tree_path, None, False)
 
         self._update_button_state()
 
