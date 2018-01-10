@@ -27,7 +27,7 @@ class Calculator(Gtk.Grid):
 
         self._tc1 = TimeControl()
         self._tc1.connect('notify::time', self._calc_time)
-        self.attach(self._tc1, 1, 1, 2, 1)
+        self.attach(self._tc1, 0, 0, 2, 1)
 
         swap_btn = Gtk.Button(
             always_show_image=True,
@@ -37,19 +37,19 @@ class Calculator(Gtk.Grid):
             tooltip_text=_('Swap')
             )
         swap_btn.connect('clicked', self._on_swap_time)
-        self.attach(swap_btn, 1, 2, 1, 1)
+        self.attach(swap_btn, 0, 1, 1, 1)
 
         self._operation_choice = OperationChooser()
         self._operation_choice.connect('changed', self._calc_time)
         self._operation_choice.set_hexpand(True)
-        self.attach(self._operation_choice, 2, 2, 1, 1)
+        self.attach(self._operation_choice, 1, 1, 1, 1)
 
         self._tc2 = TimeControl()
         self._tc2.connect('notify::time', self._calc_time)
-        self.attach(self._tc2, 1, 3, 2, 1)
+        self.attach(self._tc2, 0, 2, 2, 1)
 
         self._result = Result()
-        self.attach(self._result, 1, 4, 2, 1)
+        self.attach(self._result, 0, 3, 2, 1)
 
     def _on_swap_time(self, swap_btn):
         self.time1, self.time2 = self.time2, self.time1
