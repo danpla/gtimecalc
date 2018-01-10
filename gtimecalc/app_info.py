@@ -1,5 +1,5 @@
 '''
-Copyright © 2016-2017 Daniel Plakhotich
+Copyright © 2016-2018 Daniel Plakhotich
 
 This software is provided 'as-is', without any express or implied
 warranty. In no event will the authors be held liable for any damages
@@ -24,7 +24,7 @@ VERSION = '1.0.2'
 NAME = TITLE.lower()
 ICON = NAME
 
-COPYRIGHT = 'Copyright © 2016-2017 Daniel Plakhotich'
+COPYRIGHT = 'Copyright © 2016-2018 Daniel Plakhotich'
 LICENSE = __doc__
 
 WEBSITE = 'https://github.com/danpla/gtimecalc'
