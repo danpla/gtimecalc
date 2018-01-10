@@ -1,6 +1,6 @@
 
 from gettext import gettext as _
-from itertools import chain
+from itertools import chain, compress
 import os
 
 from gi.repository import Gtk
@@ -32,8 +32,8 @@ class ExportDialog(Gtk.Dialog):
             _('_Save'), Gtk.ResponseType.OK,
             )
 
-        self._all_eqs = []
-        self._selected_eqs = []
+        self._eqs = []
+        self._eq_is_selected = []
 
         equation_store = selection.get_tree_view().get_model()
         for row in equation_store:
@@ -43,9 +43,8 @@ class ExportDialog(Gtk.Dialog):
                 ('+', '-')[row[EquationStore.COL_OPERATION]],
                 ms_to_str(row[EquationStore.COL_RESULT])
                 )
-            self._all_eqs.append(eq_str)
-            if selection.iter_is_selected(row.iter):
-                self._selected_eqs.append(eq_str)
+            self._eqs.append(eq_str)
+            self._eq_is_selected.append(selection.iter_is_selected(row.iter))
 
         if 'export' in settings and isinstance(settings['export'], dict):
             self._settings = settings['export']
@@ -94,12 +93,13 @@ class ExportDialog(Gtk.Dialog):
 
         # Selected only
 
+        has_selected_eqs = any(self._eq_is_selected)
         self._btn_only_selected = Gtk.CheckButton(
             label=_('Only selected equations'),
             active=False,
-            sensitive=bool(self._selected_eqs),
+            sensitive=has_selected_eqs,
             )
-        if self._selected_eqs:
+        if has_selected_eqs:
             only_selected = self._settings.get('only_selected')
             if isinstance(only_selected, bool):
                 self._btn_only_selected.set_active(only_selected)
@@ -205,9 +205,9 @@ class ExportDialog(Gtk.Dialog):
 
     def _format_text(self, *args):
         if self._btn_only_selected.get_active():
-            eqs = self._selected_eqs
+            eqs = compress(self._eqs, self._eq_is_selected)
         else:
-            eqs = self._all_eqs
+            eqs = self._eqs
 
         format_string = self._format_entry.get_text()
         lines = []
