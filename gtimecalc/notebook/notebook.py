@@ -51,7 +51,6 @@ class Notebook(Gtk.Grid):
 
     def _create_toolbar(self):
         toolbar = Gtk.Toolbar(
-            icon_size=Gtk.IconSize.SMALL_TOOLBAR,
             hexpand=True
             )
         toolbar.get_style_context().add_class('bottom-toolbar')
