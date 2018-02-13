@@ -19,6 +19,8 @@ class ExportDialog(Gtk.Dialog):
     _LINE_ENDINGS = ('\n', '\r\n', '\r')
     _LINE_ENDING_NAMES = ('unix', 'win', 'mac')
 
+    _MAX_FORMAT_HISTORY = 10
+
     def __init__(self, parent, selection):
         super().__init__(
             title=_('Save equations'),
@@ -73,23 +75,35 @@ class ExportDialog(Gtk.Dialog):
 
         grid.add(Gtk.Label(label=_('Format:')))
 
-        self._format_entry = Gtk.Entry(
+        format_combo = Gtk.ComboBoxText(
+            button_sensitivity=Gtk.SensitivityType.OFF,
+            has_entry=True,
             hexpand=True,
-            tooltip_markup='\n'.join((
+            )
+        format_history = self._settings.get('format_history')
+        if isinstance(format_history, list):
+            format_combo.set_button_sensitivity(Gtk.SensitivityType.ON)
+            for s in format_history:
+                if isinstance(s, str):
+                    format_combo.append_text(s)
+        grid.add(format_combo)
+
+        self._format_entry = format_combo.get_child()
+        self._format_entry.set_tooltip_markup(
+            '\n'.join((
                 _('{} — time 1'),
                 _('{} — time 2'),
                 _('{} — operation'),
                 _('{} — result'),
                 _('{} — new line'),
                 _('{} — tabulation'),
-                )).format(*map('<tt>{}</tt>'.format, self._FORMAT_SPECIFIERS))
-            )
+                )).format(*map('<tt>{}</tt>'.format, self._FORMAT_SPECIFIERS)))
+
         format_string = self._settings.get('format')
         if not isinstance(format_string, str):
             format_string = self._DEFAULT_FORMAT
         self._format_entry.set_text(format_string)
         self._format_entry.connect('changed', self._format_text)
-        grid.add(self._format_entry)
 
         # Selected only
 
@@ -150,7 +164,24 @@ class ExportDialog(Gtk.Dialog):
         area.show_all()
 
     def do_response(self, response_id):
-        self._settings['format'] = self._format_entry.get_text()
+        format_string = self._format_entry.get_text()
+        self._settings['format'] = format_string
+
+        format_history = self._settings.get('format_history')
+        if not isinstance(format_history, list):
+            format_history = []
+        try:
+            idx = format_history.index(format_string)
+        except ValueError:
+            format_history.insert(0, format_string)
+            if len(format_history) > self._MAX_FORMAT_HISTORY:
+                format_history = format_history[:self._MAX_FORMAT_HISTORY]
+        else:
+            format_history[0], format_history[idx] = (
+                format_history[idx], format_history[0])
+
+        self._settings['format_history'] = format_history
+
         self._settings['only_selected'] = self._btn_only_selected.get_active()
         self._settings['line_endings'] = (
             self._LINE_ENDING_NAMES[self._le_combo.get_active()])
