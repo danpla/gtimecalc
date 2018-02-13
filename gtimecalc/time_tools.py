@@ -1,6 +1,4 @@
 
-import re
-
 SECOND_MS = 1000
 MINUTE_MS = 60 * SECOND_MS
 HOUR_MS = 60 * MINUTE_MS
@@ -16,7 +14,7 @@ def _ndivmod(x, y):
 
 
 def join_units(hours, minutes, seconds, milliseconds):
-    '''Jont time units to milliseconds.'''
+    '''Join time units to milliseconds.'''
     return (
         int(hours) * HOUR_MS +
         int(minutes) * MINUTE_MS +
@@ -50,20 +48,28 @@ def ms_to_str(ms, unicode_symbols=False):
         sign, abs(hours), abs(minutes), abs(seconds), seconds_pad, ratio=ratio)
 
 
+_TIME_STR_TRANS = str.maketrans('\N{MINUS SIGN}\N{RATIO},', '-::')
+
+
 def str_to_ms(time_str):
     '''Convert a string in hh:mm:ss.ms format to milliseconds.
 
     Time components in the string can be separated by a colon,
-    Unicode "RATIO", a comma, or spaces. Negative values
+    Unicode "RATIO", a comma, or whitespace. Negative values
     (with - or Unicode "MINUS SIGN") are also allowed.
 
     Raises ValueError if the string cannot be converted.
     '''
-    time_str = time_str.strip().replace('\N{MINUS SIGN}', '-')
+
+    time_str = time_str.translate(_TIME_STR_TRANS)
+
+    parts = []
+    for s in time_str.split(':'):
+        parts.extend(s.split() or ('',))
 
     result = 0
     for val, ms, val_t in zip(
-            reversed(re.split('[ \t]*[:\N{RATIO}, \t][ \t]*', time_str)),
+            reversed(parts),
             (SECOND_MS, MINUTE_MS, HOUR_MS),
             (float, int, int)):
         if val:
