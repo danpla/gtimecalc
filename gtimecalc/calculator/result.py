@@ -1,5 +1,7 @@
 
-from gi.repository import Gtk
+from gettext import gettext as _
+
+from gi.repository import Gtk, Gdk
 
 from ..time_tools import ms_to_str
 
@@ -28,8 +30,24 @@ class Result(Gtk.Grid):
             )
         self.add(self._result)
 
+        copy_btn = Gtk.Button(
+            always_show_image=True,
+            image=Gtk.Image.new_from_icon_name(
+                'edit-copy',
+                Gtk.IconSize.BUTTON),
+            relief=Gtk.ReliefStyle.NONE,
+            can_focus=False,
+            tooltip_text=_('Copy'),
+            )
+        copy_btn.connect('clicked', self._on_copy)
+        self.add(copy_btn)
+
         self._time = 0
         self.time = 0  # Initialize the label
+
+    def _on_copy(self, copy_btn):
+        clipboard = Gtk.Clipboard.get(Gdk.SELECTION_CLIPBOARD)
+        clipboard.set_text(ms_to_str(self._time), -1)
 
     @property
     def time(self):
