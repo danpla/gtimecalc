@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gTimeCalc\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-07-24 12:02+0300\n"
+"POT-Creation-Date: 2018-02-17 17:38+0200\n"
 "PO-Revision-Date: 2016-07-24 12:19+0300\n"
 "Last-Translator: \n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -23,64 +23,64 @@ msgstr ""
 msgid "Time calculator"
 msgstr "Калькулятор часу"
 
-#: gtimecalc/common.py:23 gtimecalc/notebook/export.py:31
-#: gtimecalc/notebook/export.py:169
+#: gtimecalc/common.py:23 gtimecalc/notebook/export.py:59
+#: gtimecalc/notebook/export.py:228
 msgid "_Cancel"
 msgstr "_Скасувати"
 
-#: gtimecalc/main_window.py:60
+#: gtimecalc/main_window.py:61
 msgid "_File"
 msgstr "_Файл"
 
-#: gtimecalc/main_window.py:65
+#: gtimecalc/main_window.py:66
 msgid "Quit"
 msgstr "Вийти"
 
-#: gtimecalc/main_window.py:74
+#: gtimecalc/main_window.py:75
 msgid "_View"
 msgstr "_Вигляд"
 
-#: gtimecalc/main_window.py:79
+#: gtimecalc/main_window.py:80
 msgid "Equations"
 msgstr "Рівняння"
 
-#: gtimecalc/main_window.py:85
+#: gtimecalc/main_window.py:86
 msgid "_Help"
 msgstr "_Довідка"
 
-#: gtimecalc/main_window.py:90
+#: gtimecalc/main_window.py:91
 msgid "About"
 msgstr "Про програму"
 
-#: gtimecalc/calculator/calculator.py:37
+#: gtimecalc/calculator/calculator.py:42
 msgid "Swap"
 msgstr "Змінити місцями"
 
-#: gtimecalc/calculator/time_control.py:130
+#: gtimecalc/calculator/time_control.py:132
 msgid "Hours"
 msgstr "Години"
 
-#: gtimecalc/calculator/time_control.py:137
+#: gtimecalc/calculator/time_control.py:139
 msgid "Minutes"
 msgstr "Хвилини"
 
-#: gtimecalc/calculator/time_control.py:143
+#: gtimecalc/calculator/time_control.py:145
 msgid "Seconds"
 msgstr "Секунди"
 
-#: gtimecalc/calculator/time_control.py:150
+#: gtimecalc/calculator/time_control.py:152
 msgid "Milliseconds"
 msgstr "Мілісекунди"
 
-#: gtimecalc/calculator/time_control.py:173
+#: gtimecalc/calculator/time_control.py:175
 msgid "Copy"
 msgstr "Копіювати"
 
-#: gtimecalc/calculator/time_control.py:185
+#: gtimecalc/calculator/time_control.py:187
 msgid "Paste"
 msgstr "Вставити"
 
-#: gtimecalc/calculator/time_control.py:197
+#: gtimecalc/calculator/time_control.py:199
 msgid "Reset"
 msgstr "Скинути"
 
@@ -96,95 +96,99 @@ msgstr "Час 2"
 msgid "Result"
 msgstr "Результат"
 
-#: gtimecalc/notebook/export.py:24
+#: gtimecalc/notebook/export.py:52
 msgid "Save equations"
 msgstr "Зберегти рівняння"
 
-#: gtimecalc/notebook/export.py:32 gtimecalc/notebook/export.py:170
+#: gtimecalc/notebook/export.py:60 gtimecalc/notebook/export.py:229
 msgid "_Save"
 msgstr "_Зберегти"
 
-#: gtimecalc/notebook/export.py:75
+#: gtimecalc/notebook/export.py:102
 msgid "Format:"
 msgstr "Формат:"
 
-#: gtimecalc/notebook/export.py:80
+#: gtimecalc/notebook/export.py:120
 msgid "{} — time 1"
 msgstr "{} — час 1"
 
-#: gtimecalc/notebook/export.py:81
+#: gtimecalc/notebook/export.py:121
 msgid "{} — time 2"
 msgstr "{} — час 2"
 
-#: gtimecalc/notebook/export.py:82
+#: gtimecalc/notebook/export.py:122
 msgid "{} — operation"
 msgstr "{} — операція"
 
-#: gtimecalc/notebook/export.py:83
+#: gtimecalc/notebook/export.py:123
 msgid "{} — result"
 msgstr "{} — результат"
 
-#: gtimecalc/notebook/export.py:84
+#: gtimecalc/notebook/export.py:124
 msgid "{} — new line"
 msgstr "{} — розрив рядка"
 
-#: gtimecalc/notebook/export.py:85
+#: gtimecalc/notebook/export.py:125
 msgid "{} — tabulation"
 msgstr "{} — табуляція"
 
-#: gtimecalc/notebook/export.py:98
+#: gtimecalc/notebook/export.py:126
+msgid "{} — %"
+msgstr "{} — %"
+
+#: gtimecalc/notebook/export.py:140
 msgid "Only selected equations"
 msgstr "Тільки вибрані рівняння"
 
-#: gtimecalc/notebook/export.py:117
+#: gtimecalc/notebook/export.py:159
 msgid "Line endings:"
 msgstr "Закінчення рядків"
 
-#: gtimecalc/notebook/export.py:135
+#: gtimecalc/notebook/export.py:177
 msgid "Preview:"
 msgstr "Попередній перегляд:"
 
-#: gtimecalc/notebook/export.py:162
+#: gtimecalc/notebook/export.py:221
 msgid "Save file"
 msgstr "Зберегти файл"
 
-#: gtimecalc/notebook/export.py:197
+#: gtimecalc/notebook/export.py:256
 msgid "_OK"
 msgstr "_ОК"
 
-#: gtimecalc/notebook/notebook.py:61
+#: gtimecalc/notebook/notebook.py:60
 msgid "Add"
 msgstr "Додати"
 
-#: gtimecalc/notebook/notebook.py:63 gtimecalc/notebook/notebook.py:188
+#: gtimecalc/notebook/notebook.py:62 gtimecalc/notebook/notebook.py:191
 msgid "Add current equation"
 msgstr "Додати поточне рівняння"
 
-#: gtimecalc/notebook/notebook.py:69
+#: gtimecalc/notebook/notebook.py:68
 msgid "Remove"
 msgstr "Видалити"
 
-#: gtimecalc/notebook/notebook.py:71 gtimecalc/notebook/notebook.py:196
+#: gtimecalc/notebook/notebook.py:70 gtimecalc/notebook/notebook.py:199
 msgid "Remove selected equations"
 msgstr "Видалити вибрані рівняння"
 
-#: gtimecalc/notebook/notebook.py:79
+#: gtimecalc/notebook/notebook.py:78
 msgid "Clear"
 msgstr "Очистити"
 
-#: gtimecalc/notebook/notebook.py:81 gtimecalc/notebook/notebook.py:204
+#: gtimecalc/notebook/notebook.py:80 gtimecalc/notebook/notebook.py:207
 msgid "Clear the list"
 msgstr "Очистити список"
 
-#: gtimecalc/notebook/notebook.py:91
+#: gtimecalc/notebook/notebook.py:90
 msgid "Save as…"
 msgstr "Зберегти як…"
 
-#: gtimecalc/notebook/notebook.py:93 gtimecalc/notebook/notebook.py:214
+#: gtimecalc/notebook/notebook.py:92 gtimecalc/notebook/notebook.py:217
 msgid "Save equations as…"
 msgstr "Зберегти рівняння як…"
 
-#: gtimecalc/notebook/notebook.py:121
+#: gtimecalc/notebook/notebook.py:124
 #, python-brace-format
 msgid "Remove {num} selected equation?"
 msgid_plural "Remove {num} selected equations?"
@@ -192,26 +196,26 @@ msgstr[0] "Видалити {num} вибране рівняння?"
 msgstr[1] "Видалити {num} вибраних рівняння?"
 msgstr[2] "Видалити {num} вибраних рівнянь?"
 
-#: gtimecalc/notebook/notebook.py:125 gtimecalc/notebook/notebook.py:194
+#: gtimecalc/notebook/notebook.py:128 gtimecalc/notebook/notebook.py:197
 msgid "_Remove"
 msgstr "_Видалити"
 
-#: gtimecalc/notebook/notebook.py:132
+#: gtimecalc/notebook/notebook.py:135
 msgid "Clear the list?"
 msgstr "Очистити список?"
 
-#: gtimecalc/notebook/notebook.py:133
+#: gtimecalc/notebook/notebook.py:136
 msgid "All equations will be removed."
 msgstr "Усі рівняння будуть видалені."
 
-#: gtimecalc/notebook/notebook.py:134 gtimecalc/notebook/notebook.py:202
+#: gtimecalc/notebook/notebook.py:137 gtimecalc/notebook/notebook.py:205
 msgid "_Clear"
 msgstr "_Очистити"
 
-#: gtimecalc/notebook/notebook.py:186
+#: gtimecalc/notebook/notebook.py:189
 msgid "_Add"
 msgstr "_Додати"
 
-#: gtimecalc/notebook/notebook.py:212
+#: gtimecalc/notebook/notebook.py:215
 msgid "_Save as…"
 msgstr "_Зберегти як…"

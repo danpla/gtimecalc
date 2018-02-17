@@ -11,9 +11,35 @@ from ..settings import settings
 from ..time_tools import ms_to_str
 
 
+def _format(s, replacements):
+    result = ''
+
+    copy_start = 0
+    search_start = 0
+    while True:
+        idx = s.find('%', search_start, -1)
+        if idx == -1:
+            result += s[copy_start:]
+            break
+
+        search_start = idx + 2
+
+        replacement = replacements.get(s[idx + 1])
+        if replacement is None:
+            continue
+
+        if copy_start != idx:
+            result += s[copy_start:idx]
+
+        result += replacement
+        copy_start = search_start
+
+    return result
+
+
 class ExportDialog(Gtk.Dialog):
 
-    _FORMAT_SPECIFIERS = ('%1', '%2', '%o', '%r', '%n', '%t')
+    _FORMAT_SPECIFIERS = ('1', '2', 'o', 'r', 'n', 't', '%')
     _DEFAULT_FORMAT = '%1 %o %2 = %r'
 
     _LINE_ENDINGS = ('\n', '\r\n', '\r')
@@ -97,7 +123,9 @@ class ExportDialog(Gtk.Dialog):
                 _('{} — result'),
                 _('{} — new line'),
                 _('{} — tabulation'),
-                )).format(*map('<tt>{}</tt>'.format, self._FORMAT_SPECIFIERS)))
+                _('{} — %'),
+                )).format(
+                    *map('<tt>%{}</tt>'.format, self._FORMAT_SPECIFIERS)))
 
         format_string = self._settings.get('format')
         if not isinstance(format_string, str):
@@ -243,12 +271,9 @@ class ExportDialog(Gtk.Dialog):
         format_string = self._format_entry.get_text()
         lines = []
         for eq in eqs:
-            line = format_string
-            for rpair in zip(
-                    self._FORMAT_SPECIFIERS,
-                    chain(eq, ('\n', '\t'))):
-                line = line.replace(*rpair)
-            lines.append(line)
+            replacements = dict(
+                zip(self._FORMAT_SPECIFIERS, chain(eq, ('\n', '\t', '%'))))
+            lines.append(_format(format_string, replacements))
 
         self._textbuf.delete(*self._textbuf.get_bounds())
         self._textbuf.insert_with_tags_by_name(
