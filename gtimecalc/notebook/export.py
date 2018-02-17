@@ -194,6 +194,12 @@ class ExportDialog(Gtk.Dialog):
     def do_response(self, response_id):
         format_string = self._format_entry.get_text()
         self._settings['format'] = format_string
+        self._settings['only_selected'] = self._btn_only_selected.get_active()
+        self._settings['line_endings'] = (
+            self._LINE_ENDING_NAMES[self._le_combo.get_active()])
+
+        if response_id != Gtk.ResponseType.OK:
+            return
 
         format_history = self._settings.get('format_history')
         if not isinstance(format_history, list):
@@ -209,13 +215,6 @@ class ExportDialog(Gtk.Dialog):
                 format_history[idx], format_history[0])
 
         self._settings['format_history'] = format_history
-
-        self._settings['only_selected'] = self._btn_only_selected.get_active()
-        self._settings['line_endings'] = (
-            self._LINE_ENDING_NAMES[self._le_combo.get_active()])
-
-        if response_id != Gtk.ResponseType.OK:
-            return
 
         save_dlg = Gtk.FileChooserDialog(
             title=_('Save file'),
