@@ -205,14 +205,13 @@ class ExportDialog(Gtk.Dialog):
         if not isinstance(format_history, list):
             format_history = []
         try:
-            idx = format_history.index(format_string)
+            format_history.remove(format_string)
         except ValueError:
-            format_history.insert(0, format_string)
-            if len(format_history) > self._MAX_FORMAT_HISTORY:
-                format_history = format_history[:self._MAX_FORMAT_HISTORY]
-        else:
-            format_history[0], format_history[idx] = (
-                format_history[idx], format_history[0])
+            pass
+
+        format_history.insert(0, format_string)
+        if len(format_history) > self._MAX_FORMAT_HISTORY:
+            format_history = format_history[:self._MAX_FORMAT_HISTORY]
 
         self._settings['format_history'] = format_history
 
