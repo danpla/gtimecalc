@@ -27,4 +27,4 @@ ICON = NAME
 COPYRIGHT = 'Copyright © 2016-2018 Daniel Plakhotich'
 LICENSE = __doc__
 
-WEBSITE = 'https://github.com/danpla/gtimecalc'
+WEBSITE = 'https://danpla.github.io/gtimecalc/'
