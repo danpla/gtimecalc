@@ -6,9 +6,9 @@
   * The equation list is now hidden by default
   * The Windows version is now translated
 * Export
-  * The Format entry of the export dialog now has a history
+  * The Format entry now has a history
   * Added % format specifier
-  * The default line ending on export is CRLF on Windows
+  * Default line endings on Windows are now CRLF instead of LF
 
 
 ## 1.0.2 (2016-08-15)
