@@ -1,3 +1,5 @@
+#!/bin/sh
+
 pandoc \
     manual.md \
     --to=html5 \
