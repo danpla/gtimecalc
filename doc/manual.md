@@ -6,10 +6,10 @@ format. It's a cross-platform, free, and open source software.
 ![gTimeCalc screenshot](img/screenshot.png)
 
 
-## Usage
+# Usage
 
 
-### Pasting time
+## Pasting time
 
 You can copy a time string from an any source and paste it to both of
 time entries. The units of time can be separated by a colon, a Unicode
@@ -43,7 +43,7 @@ String       | Pasted as
 `3723`       | 1 hour, 2 minutes, 3 seconds
 
 
-### Equation list
+## Equation list
 
 ![gTimeCalc with equation list enabled](img/equation_list.png)
 
@@ -59,7 +59,7 @@ next section.
 ![Equation list export dialog](img/export_dialog.png)
 
 
-#### Formatting
+### Formatting
 
 The formatting works by replacing format specifiers in the format
 string (the "Format" entry) with related information, such as a
