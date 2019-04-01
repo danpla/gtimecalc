@@ -1,9 +1,38 @@
+[gTimeCalc website]: https://danpla.github.io/gtimecalc/
+
 # About
 
 gTimeCalc is an interactive calculator for time in `hh:mm:ss.ms`
 format. It's a cross-platform, free, and open source software.
 
 ![gTimeCalc screenshot](img/screenshot.png)
+
+
+# Installation
+
+The [gTimeCalc website] provides several download options, including
+an installer for Windows and a DEB package for Debian, Ubuntu, and
+derivatives. Downloads for other systems may be added later.
+
+If you don't find a suitable choice for your system, it's possible to
+use gTimeCalc without installation. You will need the following
+dependencies:
+
+ * Python 3
+ * PyGObject
+ * gir1.2-gtk-3.0
+
+On Debian, Ubuntu, and derivatives you can install the dependencies
+with:
+
+    sudo apt-get install make python3 python3-gi gir1.2-gtk-3.0 gir1.2-appindicator3-0.1
+
+After you have installed the dependencies, download the source code
+tarball, unpack it anywhere, and execute `bin/gtimecalc`. If you have
+any troubles with the last step, please read
+[Python Setup and Usage][].
+
+[Python Setup and Usage]: https://docs.python.org/3/using/index.html
 
 
 # Usage
