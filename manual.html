@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>gTimeCalc Manual</title>
+  <style type="text/css">
+      code{white-space: pre-wrap;}
+      span.smallcaps{font-variant: small-caps;}
+      span.underline{text-decoration: underline;}
+      div.line-block{white-space: pre-line;}
+      div.column{display: inline-block; vertical-align: top; width: 50%;}
+  </style>
+  <link rel="stylesheet" href="base.css">
+  <link rel="stylesheet" href="manual.css">
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+  <link rel="icon" type="image/png" href="favicon.png">
+</head>
+<body>
+<header>
+<h1 class="title">gTimeCalc Manual</h1>
+</header>
+<nav id="TOC">
+<h2 id="toctitle">Table of contents</h2>
+<ul>
+<li><a href="#about"><span class="toc-section-number">1</span> About</a></li>
+<li><a href="#usage"><span class="toc-section-number">2</span> Usage</a><ul>
+<li><a href="#pasting-time"><span class="toc-section-number">2.1</span> Pasting time</a></li>
+<li><a href="#equation-list"><span class="toc-section-number">2.2</span> Equation list</a><ul>
+<li><a href="#formatting"><span class="toc-section-number">2.2.1</span> Formatting</a></li>
+</ul></li>
+</ul></li>
+</ul>
+</nav>
+<h1 id="about"><span class="header-section-number">1</span> About</h1>
+<p>gTimeCalc is an interactive calculator for time in <code>hh:mm:ss.ms</code> format. It’s a cross-platform, free, and open source software.</p>
+<figure>
+<img src="img/screenshot.png" alt="gTimeCalc screenshot" /><figcaption>gTimeCalc screenshot</figcaption>
+</figure>
+<h1 id="usage"><span class="header-section-number">2</span> Usage</h1>
+<h2 id="pasting-time"><span class="header-section-number">2.1</span> Pasting time</h2>
+<p>You can copy a time string from an any source and paste it to both of time entries. The units of time can be separated by a colon, a Unicode “RATIO” (U+2236), a comma, or any number of spaces and tabs. The last component (seconds) is treated as a real number, others — as integers, which means that fractional part, if any, will be truncated.</p>
+<p>Time units in a string are parsed from right to left, so some of them, as well as separators between, can be omitted. In this case, they will be treated as zero. For example: <code>12:</code> and <code>00:12:00</code> is 12 minutes, <code>:</code> is just zero.</p>
+<p>The minus (ASCII hyphen (U+002D) or Unicode “MINUS SIGN” (U+2212)) is allowed as well. For example, <code>1:−60</code> will be pasted as 0. But keep in mind that the resulting time is always positive, so <code>1:−70</code> will be pasted as 10 seconds.</p>
+<p>Here are some examples:</p>
+<table>
+<thead>
+<tr class="header">
+<th>String</th>
+<th>Pasted as</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>12:15:35.5</code></td>
+<td>12 hours, 15 minutes, 35 seconds, 500 milliseconds</td>
+</tr>
+<tr class="even">
+<td><code>12:15:</code></td>
+<td>12 hours, 15 minutes</td>
+</tr>
+<tr class="odd">
+<td><code>12:15</code></td>
+<td>12 minutes, 15 seconds</td>
+</tr>
+<tr class="even">
+<td><code>12</code></td>
+<td>12 seconds</td>
+</tr>
+<tr class="odd">
+<td><code>−12</code></td>
+<td>12 seconds (the final time is always positive)</td>
+</tr>
+<tr class="even">
+<td><code>.010</code></td>
+<td>10 milliseconds</td>
+</tr>
+<tr class="odd">
+<td><code>1:−60</code></td>
+<td>0 (1 minute minus 60 seconds)</td>
+</tr>
+<tr class="even">
+<td><code>1:−70</code></td>
+<td>10 seconds (positive result of 1 minute minus 70 seconds)</td>
+</tr>
+<tr class="odd">
+<td><code>130:</code></td>
+<td>2 hours, 10 minutes</td>
+</tr>
+<tr class="even">
+<td><code>3723</code></td>
+<td>1 hour, 2 minutes, 3 seconds</td>
+</tr>
+</tbody>
+</table>
+<h2 id="equation-list"><span class="header-section-number">2.2</span> Equation list</h2>
+<figure>
+<img src="img/equation_list.png" alt="gTimeCalc with equation list enabled" /><figcaption>gTimeCalc with equation list enabled</figcaption>
+</figure>
+<p>gTimeCalc has a list (select “View → Equations” to show it) in which you can add equations from the calculator. To load the equation back, click twice on it.</p>
+<p>The “Save equation as…” button shows the dialog that allows you to save the equation list as a plain text file in a custom format, e.g. <a href="https://en.wikipedia.org/wiki/Comma-separated_values">CSV</a> to open in a spreadsheet. The formatting is described in the next section.</p>
+<figure>
+<img src="img/export_dialog.png" alt="Equation list export dialog" /><figcaption>Equation list export dialog</figcaption>
+</figure>
+<h3 id="formatting"><span class="header-section-number">2.2.1</span> Formatting</h3>
+<p>The formatting works by replacing format specifiers in the format string (the “Format” entry) with related information, such as a component from the equation. Any text which is not a specifier remains as is.</p>
+<p>Here are all the format specifiers (you can also see them in the pop-up tooltip of the Format entry):</p>
+<table>
+<thead>
+<tr class="header">
+<th>Spec</th>
+<th>Meaning</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>%1</code></td>
+<td>Time 1</td>
+</tr>
+<tr class="even">
+<td><code>%2</code></td>
+<td>Time 2</td>
+</tr>
+<tr class="odd">
+<td><code>%o</code></td>
+<td>Operation</td>
+</tr>
+<tr class="even">
+<td><code>%r</code></td>
+<td>Result</td>
+</tr>
+<tr class="odd">
+<td><code>%n</code></td>
+<td>Newline</td>
+</tr>
+<tr class="even">
+<td><code>%t</code></td>
+<td>Tabulation</td>
+</tr>
+<tr class="odd">
+<td><code>%%</code></td>
+<td>%</td>
+</tr>
+</tbody>
+</table>
+<p>For example, the format string to print a whole equation will be <code>%1 %o %2 = %r</code>. To create a <a href="https://en.wikipedia.org/wiki/Comma-separated_values">CSV</a> file, use <code>%1,%o,%2,%r</code> and choose Windows (CRLF) line endings.</p>
+<p>Several notes:</p>
+<ul>
+<li><p>For practical reasons, the text that replaces specifiers uses ASCII symbols instead of the Unicode ones. This means that time units will be separated by a colon (U+003A) instead of “RATIO” (U+2236), and the minus will be pasted as a hyphen (U+002D) instead of “MINUS SIGN” (U+2212).</p></li>
+<li><p>Each equation will be on a separate line. You don’t have to add <code>%n</code> at the end of the format string for this.</p></li>
+<li><p>Using <code>%%</code> to insert the percent sign is only necessary when the sign and the following character create another specifier.</p></li>
+</ul>
+</body>
+</html>

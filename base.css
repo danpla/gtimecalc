@@ -1,0 +1,73 @@
+body {
+  margin: 0 auto;
+  max-width: 36em;
+  color: #333333;
+  font-family: Helvetica, Arial, sans-serif;
+  font-size: 13pt;
+  line-height: 1.5;
+}
+
+a {
+  text-decoration: none;
+  border-bottom: 0.1em solid;
+}
+
+em {
+  font-style: normal;
+  font-weight: bold;
+}
+
+code {
+  padding: 0.2em 0.5em;
+  font-family: "Liberation Mono", "DejaVu Sans Mono", monospace;
+  font-size: 0.8em;
+  background-color: #eeeeee;
+}
+
+kbd {
+  border: 0.1em solid #aaaaaa;
+  border-radius: 0.2em;
+  box-shadow: 0.1em 0.1em #aaaaaa;
+  padding: 0em 0.4em;
+  font-family: inherit;
+  font-size: 1em;
+}
+
+footer {
+  padding: 1.2em 0;
+  margin-top: 4em;
+  border-top: 0.12em solid #dddddd;
+  font-size: 0.8em;
+  text-align: center;
+}
+
+table, th, td {
+  border: 0.1em solid #dddddd;
+  border-collapse: collapse;
+}
+
+th {
+  text-align: left;
+}
+
+th, td {
+  padding: 0.4em 0.5em;
+}
+
+figure {
+  margin: 1em 0;
+}
+
+figure img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+  margin: 0 auto;
+}
+
+figcaption {
+  margin: 0.4em 0;
+  color: #777777;
+  font-size: 0.8em;
+  text-align: center;
+}
