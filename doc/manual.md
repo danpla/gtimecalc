@@ -40,21 +40,22 @@ any troubles with the last step, please read
 
 ## Pasting time
 
-You can copy a time string from an any source and paste it to both of
-time entries. The units of time can be separated by a colon, a Unicode
-"RATIO" (U+2236), a comma, or any number of spaces and tabs. The last
-component (seconds) is treated as a real number, others — as integers,
-which means that fractional part, if any, will be truncated.
+You can copy a time string from any text and paste it into both time
+entries. The time units can be separated by a colon, a Unicode
+"RATIO" (U+2236), a comma, or any number of spaces and tabs. Seconds
+can have a decimal separator followed by a fractional part denoting
+milliseconds. The decimal separator is always a period, regardless of
+your locale.
 
-Time units in a string are parsed from right to left, so some of them,
-as well as separators between, can be omitted. In this case, they will
-be treated as zero. For example: `12:` and `00:12:00` is 12 minutes,
-`:` is just zero.
+Time units in a string are parsed from right to left, so some of
+them, as well as separators between, can be omitted. In this case,
+they will be treated as zero. For example: `12:` and `00:12:00` is 12
+minutes, `:` is just zero. It's also possible to omit the integer
+part of seconds if you only need to express milliseconds, like `.010`.
 
 The minus (ASCII hyphen (U+002D) or Unicode "MINUS SIGN" (U+2212)) is
-allowed as well. For example, `1:−60` will be pasted as 0. But keep in
-mind that the resulting time is always positive, so `1:−70` will be
-pasted as 10 seconds.
+allowed as well. For example, `1:−60` is 0. The resulting time is
+always positive, so `1:−70` is 10 seconds.
 
 Here are some examples:
 
