@@ -27,10 +27,11 @@
 <h2 id="toctitle">Table of contents</h2>
 <ul>
 <li><a href="#about"><span class="toc-section-number">1</span> About</a></li>
-<li><a href="#usage"><span class="toc-section-number">2</span> Usage</a><ul>
-<li><a href="#pasting-time"><span class="toc-section-number">2.1</span> Pasting time</a></li>
-<li><a href="#equation-list"><span class="toc-section-number">2.2</span> Equation list</a><ul>
-<li><a href="#formatting"><span class="toc-section-number">2.2.1</span> Formatting</a></li>
+<li><a href="#installation"><span class="toc-section-number">2</span> Installation</a></li>
+<li><a href="#usage"><span class="toc-section-number">3</span> Usage</a><ul>
+<li><a href="#pasting-time"><span class="toc-section-number">3.1</span> Pasting time</a></li>
+<li><a href="#equation-list"><span class="toc-section-number">3.2</span> Equation list</a><ul>
+<li><a href="#formatting"><span class="toc-section-number">3.2.1</span> Formatting</a></li>
 </ul></li>
 </ul></li>
 </ul>
@@ -40,11 +41,22 @@
 <figure>
 <img src="img/screenshot.png" alt="gTimeCalc screenshot" /><figcaption>gTimeCalc screenshot</figcaption>
 </figure>
-<h1 id="usage"><span class="header-section-number">2</span> Usage</h1>
-<h2 id="pasting-time"><span class="header-section-number">2.1</span> Pasting time</h2>
-<p>You can copy a time string from an any source and paste it to both of time entries. The units of time can be separated by a colon, a Unicode “RATIO” (U+2236), a comma, or any number of spaces and tabs. The last component (seconds) is treated as a real number, others — as integers, which means that fractional part, if any, will be truncated.</p>
-<p>Time units in a string are parsed from right to left, so some of them, as well as separators between, can be omitted. In this case, they will be treated as zero. For example: <code>12:</code> and <code>00:12:00</code> is 12 minutes, <code>:</code> is just zero.</p>
-<p>The minus (ASCII hyphen (U+002D) or Unicode “MINUS SIGN” (U+2212)) is allowed as well. For example, <code>1:−60</code> will be pasted as 0. But keep in mind that the resulting time is always positive, so <code>1:−70</code> will be pasted as 10 seconds.</p>
+<h1 id="installation"><span class="header-section-number">2</span> Installation</h1>
+<p>The <a href="https://danpla.github.io/gtimecalc/">gTimeCalc website</a> provides several download options, including an installer for Windows and a DEB package for Debian, Ubuntu, and derivatives. Downloads for other systems may be added later.</p>
+<p>If you don’t find a suitable choice for your system, it’s possible to use gTimeCalc without installation. You will need the following dependencies:</p>
+<ul>
+<li>Python 3</li>
+<li>PyGObject</li>
+<li>gir1.2-gtk-3.0</li>
+</ul>
+<p>On Debian, Ubuntu, and derivatives you can install the dependencies with:</p>
+<pre><code>sudo apt-get install make python3 python3-gi gir1.2-gtk-3.0 gir1.2-appindicator3-0.1</code></pre>
+<p>After you have installed the dependencies, download the source code tarball, unpack it anywhere, and execute <code>bin/gtimecalc</code>. If you have any troubles with the last step, please read <a href="https://docs.python.org/3/using/index.html">Python Setup and Usage</a>.</p>
+<h1 id="usage"><span class="header-section-number">3</span> Usage</h1>
+<h2 id="pasting-time"><span class="header-section-number">3.1</span> Pasting time</h2>
+<p>You can copy a time string from any text and paste it into both time entries. The time units can be separated by a colon, a Unicode “RATIO” (U+2236), a comma, or any number of spaces and tabs. Seconds can have a decimal separator followed by a fractional part denoting milliseconds. The decimal separator is always a period, regardless of your locale.</p>
+<p>Time units in a string are parsed from right to left, so some of them, as well as separators between, can be omitted. In this case, they will be treated as zero. For example: <code>12:</code> and <code>00:12:00</code> is 12 minutes, <code>:</code> is just zero. It’s also possible to omit the integer part of seconds if you only need to express milliseconds, like <code>.010</code>.</p>
+<p>The minus (ASCII hyphen (U+002D) or Unicode “MINUS SIGN” (U+2212)) is allowed as well. For example, <code>1:−60</code> is 0. The resulting time is always positive, so <code>1:−70</code> is 10 seconds.</p>
 <p>Here are some examples:</p>
 <table>
 <thead>
@@ -96,7 +108,7 @@
 </tr>
 </tbody>
 </table>
-<h2 id="equation-list"><span class="header-section-number">2.2</span> Equation list</h2>
+<h2 id="equation-list"><span class="header-section-number">3.2</span> Equation list</h2>
 <figure>
 <img src="img/equation_list.png" alt="gTimeCalc with equation list enabled" /><figcaption>gTimeCalc with equation list enabled</figcaption>
 </figure>
@@ -105,7 +117,7 @@
 <figure>
 <img src="img/export_dialog.png" alt="Equation list export dialog" /><figcaption>Equation list export dialog</figcaption>
 </figure>
-<h3 id="formatting"><span class="header-section-number">2.2.1</span> Formatting</h3>
+<h3 id="formatting"><span class="header-section-number">3.2.1</span> Formatting</h3>
 <p>The formatting works by replacing format specifiers in the format string (the “Format” entry) with related information, such as a component from the equation. Any text which is not a specifier remains as is.</p>
 <p>Here are all the format specifiers (you can also see them in the pop-up tooltip of the Format entry):</p>
 <table>
