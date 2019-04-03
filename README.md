@@ -8,3 +8,4 @@ Website: [https://danpla.github.io/gtimecalc/](https://danpla.github.io/gtimecal
 ## Docs
 
 * [Manual](doc/manual.md)
+* [Instructions for setup_win.py](doc/setup_win_readme.txt)
