@@ -36,10 +36,14 @@ cp $DATA_DIR/data/$APPNAME.desktop $DESKTOP_DIR
 # Docs
 DOC_DIR=$INSTALL_DIR/doc/$APPNAME
 mkdir -p $DOC_DIR
+
 cp $DATA_DIR/LICENSE $DOC_DIR/copyright
 
 cp $DATA_DIR/doc/manual.md $DOC_DIR/README
 gzip -9 $DOC_DIR/README
+
+cp $DATA_DIR/CHANGELOG.md $DOC_DIR/changelog
+gzip -9 $DOC_DIR/changelog
 
 cp changelog $DOC_DIR/changelog.Debian
 gzip -9 $DOC_DIR/changelog.Debian
