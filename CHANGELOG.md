@@ -9,6 +9,8 @@
   * The Format entry now has a history
   * Added % format specifier
   * Default line endings on Windows are now CRLF instead of LF
+* Various
+  * DEB package now installs the binary in /usr/bin instead of /bin
 
 
 ## 1.0.2 (2016-08-15)
