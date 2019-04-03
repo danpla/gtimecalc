@@ -1,4 +1,4 @@
-## 1.0.3 (2019-)
+## 1.0.3 (2019-04-03)
 
 * UI
   * The Swap button is moved to the right of the operation combo box
