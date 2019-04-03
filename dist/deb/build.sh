@@ -38,8 +38,8 @@ DOC_DIR=$INSTALL_DIR/doc/$APPNAME
 mkdir -p $DOC_DIR
 cp $DATA_DIR/LICENSE $DOC_DIR/copyright
 
-cp $DATA_DIR/README.md $DOC_DIR
-gzip -9 $DOC_DIR/README.md
+cp $DATA_DIR/doc/manual.md $DOC_DIR/README
+gzip -9 $DOC_DIR/README
 
 cp changelog $DOC_DIR/changelog.Debian
 gzip -9 $DOC_DIR/changelog.Debian
